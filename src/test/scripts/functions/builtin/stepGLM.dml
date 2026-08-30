@@ -37,10 +37,6 @@ Y = (rand(rows=N, cols=1, min=0.0, max=1.0, seed=456) < P_y) * 1.0;
 
 [AIC, B, S] = stepGLM::m_stepGLM(X=X, Y=Y, link=2, yneg=0.0, icpt=0, tol=1e-6, disp=0.0, moi=200, mii=0, thr=0.01);
 
-print("\n\n\n\n\n\n\nTest Results:");
-print("Optimal AIC: " + AIC);
-print("Selected Feature Indices:\n" + toString(S));
-print("Estimated Coefficients:\n" + toString(B));
 
 beta_est = matrix(0, rows=P, cols=1);
 for (i in 1:nrow(B)) {
@@ -52,16 +48,11 @@ for (i in 1:nrow(B)) {
 if (nrow(B) != 3 | sum(beta_est != 0 & beta_true == 0) > 0 | sum(beta_est == 0 & beta_true != 0) > 0) {
     stop("Test failed: Inexact feature support recovery.");
 }
-print("passed test 1")
 
 # Case 02
 epsilon = 0.5;
 if (max(abs(beta_est - beta_true)) > epsilon) {
     stop("Test failed: Parameter estimates exceed tolerance bound epsilon = " + epsilon + ".");
 }
-print("passed test 2")
 
-
-
-#stop("!!!Sucess!!!") # uncomment for letting the test fail
 

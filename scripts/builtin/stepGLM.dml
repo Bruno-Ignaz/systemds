@@ -113,7 +113,6 @@ m_stepGLM = function (
             all_ones = matrix (1, rows = num_records, cols = 1);
             [AIC_best, ignore_beta2, ignore_S2] = internal_glm(X=all_ones, Y=Y, intercept_status=0, num_features_orig=num_features, Selected=columns_fixed_ordered, link=link, disp=disp, tol=tol, moi=moi, mii=mii);
         }
-        #print ("Best AIC without any features: " + AIC_best);
 
         # First pass to examine single features
         AICs = matrix (AIC_best, rows = 1, cols = num_features);
@@ -133,7 +132,6 @@ m_stepGLM = function (
         }
 
         if (column_best == 0) {
-            #print ("AIC of an empty model is " + AIC_best + " and adding no feature achieves more than " + (thr * 100) + "% decrease in AIC!");
             if (intercept_status == 0) {
                 # Compute AIC of an empty model with no features and no intercept (all Ys are zero)
                 [AIC_best, ignore_beta4, ignore_S4] = internal_glm(X=X_global, Y=Y, intercept_status=0, num_features_orig=num_features, Selected=columns_fixed_ordered, link=link, disp=disp, tol=tol, moi=moi, mii=mii);
@@ -144,7 +142,6 @@ m_stepGLM = function (
             }
         };
 
-        # print ("Best AIC " + AIC_best + " achieved with feature: " + column_best);	
         columns_fixed[1,column_best] = 1;
         columns_fixed_ordered[1,1] = column_best;
         X_global = X_orig[,column_best];		
@@ -173,7 +170,6 @@ m_stepGLM = function (
 
             # cbind best found features (i.e., columns) to X_global
             if (as.scalar(columns_fixed[1,column_best]) == 0) { # new best feature found
-                #print ("Best AIC " + AIC_best + " achieved with feature: " + column_best);
                 columns_fixed[1,column_best] = 1;
                 columns_fixed_ordered = cbind (columns_fixed_ordered, as.matrix(column_best));
                 if (ncol(columns_fixed_ordered) == num_features) { # all features examined
@@ -188,7 +184,6 @@ m_stepGLM = function (
         }
 
         # run GLM with selected set of features
-        print ("Running GLM with selected features...");
         [AIC, B, S] = internal_glm(X=X_global, Y=Y, intercept_status=intercept_status, num_features_orig=num_features, Selected=columns_fixed_ordered, link=link, disp=disp, tol=tol, moi=moi, mii=mii);
     }
 
