@@ -137,7 +137,6 @@ m_stepGLM = function (
                 [AIC_best, ignore_beta4, ignore_S4] = internal_glm(X=X_global, Y=Y, intercept_status=0, num_features_orig=num_features, Selected=columns_fixed_ordered, link=link, disp=disp, tol=tol, moi=moi, mii=mii);
             } else {
                 # compute AIC of an empty model with only intercept (all Ys are constant)
-                ###all_ones = matrix (1, rows = num_records, cols = 1);
                 [AIC_best, ignore_beta5, ignore_S5] = internal_glm(X=all_ones, Y=Y, intercept_status=0, num_features_orig=num_features, Selected=columns_fixed_ordered, link=link, disp=disp, tol=tol, moi=moi, mii=mii);
             }
         };
