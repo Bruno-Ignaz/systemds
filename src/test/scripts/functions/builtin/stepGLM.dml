@@ -44,15 +44,15 @@ for (i in 1:nrow(B)) {
     beta_est[idx, 1] = B[i, 1];
 }
 
-# Case 01
+# if beta_est and beta_true have the same sparsity
 if (nrow(B) != 3 | sum(beta_est != 0 & beta_true == 0) > 0 | sum(beta_est == 0 & beta_true != 0) > 0) {
-    stop("Test failed: Inexact feature support recovery.");
+    stop("Test failed: Unexpected non-zero element in beta_est");
 }
 
-# Case 02
+# if maximal element divergence remains below epsilon bound
 epsilon = 0.5;
 if (max(abs(beta_est - beta_true)) > epsilon) {
-    stop("Test failed: Parameter estimates exceed tolerance bound epsilon = " + epsilon + ".");
+    stop("Test failed: Element divergence exceeds epsilon=" + epsilon +" tolerance.");
 }
 
 
