@@ -24,8 +24,10 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public interface SpillableObject {
-	boolean tryWrite(DataOutput out)  throws IOException;
-	void read(DataInput in)  throws IOException;
+	boolean tryWrite(DataOutput out) throws IOException;
+
+	void read(DataInput in) throws IOException;
+
 	long size();
 
 	default void discard() {

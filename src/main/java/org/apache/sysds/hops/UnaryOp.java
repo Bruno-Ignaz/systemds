@@ -466,12 +466,9 @@ public class UnaryOp extends MultiThreadedHop
 			|| _op == OpOp1.LINEAGE
 			|| _op == OpOp1.CAST_AS_LIST;
 	}
-	
-	private boolean isDisallowedSparkOps(){
-		return isCumulativeUnaryOperation() 
-			|| isCastUnaryOperation()
-			|| _op==OpOp1.MEDIAN
-			|| _op==OpOp1.IQM;
+
+	private boolean isDisallowedSparkOps() {
+		return isCumulativeUnaryOperation() || isCastUnaryOperation() || _op == OpOp1.MEDIAN || _op == OpOp1.IQM;
 	}
 
 	@Override

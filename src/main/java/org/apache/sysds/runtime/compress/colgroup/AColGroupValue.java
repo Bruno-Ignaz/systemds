@@ -210,7 +210,6 @@ public abstract class AColGroupValue extends ADictBasedColGroup {
 		counts = null;
 	}
 
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
