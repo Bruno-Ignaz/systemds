@@ -142,8 +142,7 @@ public class MatrixFromFrameSafeCastTest {
 		// the fallback warning must be logged exactly once across both conversions
 		final List<LoggingEvent> log = LoggingUtils.reinsert(appender);
 		long warnings = log.stream()
-			.filter(l -> l.getMessage().toString().contains("falling back to NaN on incompatible cells"))
-			.count();
+			.filter(l -> l.getMessage().toString().contains("falling back to NaN on incompatible cells")).count();
 		assertEquals(1, warnings);
 	}
 
@@ -153,8 +152,7 @@ public class MatrixFromFrameSafeCastTest {
 		setWarnCast(false);
 		FrameBlock fb = mixedFrame();
 
-		Exception e = assertThrows(DMLRuntimeException.class,
-			() -> MatrixBlockFromFrame.convertToMatrixBlock(fb, 1));
+		Exception e = assertThrows(DMLRuntimeException.class, () -> MatrixBlockFromFrame.convertToMatrixBlock(fb, 1));
 		assertTrue(e.getMessage().contains("Failed to convert FrameBlock to MatrixBlock"));
 	}
 
@@ -164,8 +162,7 @@ public class MatrixFromFrameSafeCastTest {
 		setWarnCast(false);
 		FrameBlock fb = mixedFrame();
 
-		Exception e = assertThrows(DMLRuntimeException.class,
-			() -> MatrixBlockFromFrame.convertToMatrixBlock(fb, 4));
+		Exception e = assertThrows(DMLRuntimeException.class, () -> MatrixBlockFromFrame.convertToMatrixBlock(fb, 4));
 		assertTrue(e.getMessage().contains("Failed to convert FrameBlock to MatrixBlock"));
 	}
 
@@ -185,8 +182,7 @@ public class MatrixFromFrameSafeCastTest {
 
 		final List<LoggingEvent> log = LoggingUtils.reinsert(appender);
 		long warnings = log.stream()
-			.filter(l -> l.getMessage().toString().contains("falling back to NaN on incompatible cells"))
-			.count();
+			.filter(l -> l.getMessage().toString().contains("falling back to NaN on incompatible cells")).count();
 		assertEquals(0, warnings);
 	}
 

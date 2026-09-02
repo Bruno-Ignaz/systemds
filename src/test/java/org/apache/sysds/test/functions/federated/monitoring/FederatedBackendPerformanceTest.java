@@ -91,10 +91,12 @@ public class FederatedBackendPerformanceTest extends FederatedMonitoringTestBase
 			taskFutures.forEach(res -> {
 				try {
 					Assert.assertEquals("Stats parsed correctly", res.get().statusCode(), 200);
-				} catch (InterruptedException e) {
+				}
+				catch(InterruptedException e) {
 					Thread.currentThread().interrupt();
 					Assert.fail("Interrupted while fetching statistics: " + e.getMessage());
-				} catch (ExecutionException e) {
+				}
+				catch(ExecutionException e) {
 					Assert.fail("Failed to fetch statistics: " + e.getMessage());
 				}
 			});

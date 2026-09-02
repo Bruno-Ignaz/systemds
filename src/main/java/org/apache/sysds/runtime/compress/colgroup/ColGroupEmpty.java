@@ -478,14 +478,13 @@ public class ColGroupEmpty extends AColGroupCompressed
 		return new ColGroupEmpty(combinedIndex);
 	}
 
-	@Override 
-	public AColGroup removeEmptyRows(boolean[] selectV, int rOut){
+	@Override
+	public AColGroup removeEmptyRows(boolean[] selectV, int rOut) {
 		return this;
 	}
 
-
 	@Override
-	protected AColGroup removeEmptyColsSubset(IColIndex newColumnIDs, IntArrayList selectedColumns){
+	protected AColGroup removeEmptyColsSubset(IColIndex newColumnIDs, IntArrayList selectedColumns) {
 		return new ColGroupEmpty(newColumnIDs);
 	}
 
